@@ -6,4 +6,4 @@ getAll(){
 }
 }
 
-export default PostService;
+export default new PostService; // export ederken new yazarsak app.js de sürekli newlememize gerek kalmaz.
