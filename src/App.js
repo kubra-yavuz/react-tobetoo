@@ -6,6 +6,7 @@ import PostService from './services/postService';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Homepage from './pages/Homepage/Homepage';
 import Posts from './components/postCard/PostCard';
+import NotFound from './pages/NotFound/NotFound';
 
 
 
@@ -37,8 +38,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} /> {/*sayfa ilk açıldığında*/}
         <Route path="/posts" element={<Posts />} />
+        <Route path="*" element={<NotFound/>}/> {/*NotFound sayfası*/}
       </Routes>
     </BrowserRouter>
   );

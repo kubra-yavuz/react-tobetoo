@@ -28,4 +28,4 @@ function postCard(props) {
     );
 }
 
-export default postCard
+export default postCard;
