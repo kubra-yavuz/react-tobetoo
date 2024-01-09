@@ -1,8 +1,8 @@
 
 import './App.css';
 import { useEffect,useState} from 'react';
-import axios from 'axios';
 import React from 'react'
+import PostService from './services/postService';
 
 
 function App() {
@@ -19,8 +19,9 @@ const [posts, setposts] = useState([]);
 //.finally(()=>{console.log("async işlem bitti")});
 
 try {
-  let response = await axios.get("https://jsonplaceholder.typicode.com/posts");
   
+  let postService = new PostService();
+  let response = await postService.getAll();
   setposts(response.data);
 } catch (e) {
   console.log(e);
@@ -31,6 +32,7 @@ try {
   }
   return (
     <div className="App">
+      {/*Parent-Child*/}
     {posts.map((post)=><postCard onDelete ={removePost} post={post} />)}
     </div>
   );
