@@ -3,7 +3,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import React from 'react'
 import PostService from './services/postService';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Homepage from './pages/Homepage/Homepage';
 import NotFound from './pages/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
@@ -39,13 +39,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Homepage />} /> {/*sayfa ilk açıldığında*/}
-          <Route path="/posts" element={<Posts />} />
-          <Route path="*" element={<NotFound />} /> {/*NotFound sayfası*/}
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} /> {/*sayfa ilk açıldığında*/}
+        <Route path="/posts" element={<Posts />} />
+        <Route path="*" element={<NotFound />} /> {/*NotFound sayfası*/}
+      </Routes>
+
     </>
   );
 }
