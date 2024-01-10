@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button,Card } from 'semantic-ui-react';
+import PostCard from './src/components/PostCard/PostCard.jsx';
 
-function postCard(props) {
+
+function PostCard(props) {
     console.log(props);
     return (
 
@@ -28,4 +30,4 @@ function postCard(props) {
     );
 }
 
-export default postCard;
+export default PostCard;
