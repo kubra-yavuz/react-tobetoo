@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Button } from 'semantic-ui-react'
+import { useAuth } from '../../contexts/authContext'
 
 function Login() {
-  return (
-    <div>
-      Login
-    </div>
+    const authContext = useAuth();
+    
+    return (
+        <div>
+            <Button onClick={() => {
+                authContext.setIsAuthenticated(true);
+            }}
+      >
+            Giriş yap
+        </Button>
+    </div >
   )
 }
 
