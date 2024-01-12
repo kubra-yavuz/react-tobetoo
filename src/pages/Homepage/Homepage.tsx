@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Homepage() {
-const selector = useSelector (state => {
+const selector = useSelector ((state:any) => {
     console.log(state);
      return state.cart;
     });

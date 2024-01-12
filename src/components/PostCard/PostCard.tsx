@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button,Card } from 'semantic-ui-react';
-import PostCard from './src/components/PostCard/PostCard.jsx';
 
 
-function PostCard(props) {
+
+function PostCard(props:any) {
     console.log(props);
     return (
 

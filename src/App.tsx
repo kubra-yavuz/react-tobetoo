@@ -12,7 +12,7 @@ import Login from './pages/Login/Login.jsx';
 
 
 function App() {
-  const [posts, setPosts] = useState([]); 
+  const [posts, setPosts] = useState<any>([]); 
   // useState hook'u ile 'posts' adında bir state ve bu state'i güncellemek için 'setPosts' adında bir fonksiyon tanımlanır.
 
   useEffect(() => { //useEffect hook'u, bileşenin yüklendiği anda bir işlem gerçekleştirmek için kullanılır.
@@ -34,8 +34,8 @@ function App() {
       console.log(e); //Hata durumunda ise hata konsola yazdırılır.
     }
   }
-  const removePost = (id) => { //removePost fonksiyonu, bir post'un ID'sine göre filtreleme yaparak 'posts' state'ini günceller ve ilgili post'u kaldırır.
-    setPosts(posts.filter(i => i.id !== id));
+  const removePost = (id : any) => { //removePost fonksiyonu, bir post'un ID'sine göre filtreleme yaparak 'posts' state'ini günceller ve ilgili post'u kaldırır.
+    setPosts(posts.filter((i:any) => i.id !== id));
   }
   return (
     <>

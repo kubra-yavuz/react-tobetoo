@@ -6,7 +6,7 @@ const myFunction1 = (): number => {
     return 5;
 };
 function myFunction2(): void { }
-let function1 = myFunction();
+let function1 = myFunction1();
 let function2 = myFunction2();
 
 class ProductService {
