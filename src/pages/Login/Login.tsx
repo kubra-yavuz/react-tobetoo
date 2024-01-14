@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { Button } from 'semantic-ui-react'
-import { useAuth } from '../../contexts/authContext'
+
+import { Button } from 'semantic-ui-react';
+import { useAuth } from '../../contexts/authContext';
 
 function Login() {
     const authContext = useAuth();

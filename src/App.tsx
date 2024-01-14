@@ -1,18 +1,18 @@
 
 import './App.css';
 import { useEffect, useState } from 'react';
-import React from 'react'
 import PostService from './services/postService';
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './pages/Homepage/Homepage';
 import NotFound from './pages/NotFound/NotFound';
 import Navbar from './components/Navbar/Navbar';
-import Posts from './pages/Posts/Posts.jsx';
-import Login from './pages/Login/Login.jsx';
+import Posts from './pages/Posts/Posts';
+import Login from './pages/Login/Login';
+import { Post } from './models/post';
 
 
 function App() {
-  const [posts, setPosts] = useState<any>([]); 
+  const [posts, setPosts] = useState<Post[]>([]); 
   // useState hook'u ile 'posts' adında bir state ve bu state'i güncellemek için 'setPosts' adında bir fonksiyon tanımlanır.
 
   useEffect(() => { //useEffect hook'u, bileşenin yüklendiği anda bir işlem gerçekleştirmek için kullanılır.
