@@ -1,0 +1,49 @@
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import postService from "../../services/postService";
+import {Post} from "../../models/post";
+
+//asenkron işlem 
+export const getAllPosts = createAsyncThunk<Post[]>(
+	"post/getAllPosts",
+	async (thunkArg, thunkAPI) => {
+		const state: any = thunkAPI.getState();
+
+		if (state.post.posts.length > 0) {
+			return thunkAPI.fulfillWithValue(state.post.posts);
+		}
+
+		try {
+			const response = await postService.getAll();
+			return thunkAPI.fulfillWithValue(response.data);
+		} catch (e: any) {
+			return thunkAPI.rejectWithValue("Hata mesajı");
+		}
+	},
+);
+
+const postSlice = createSlice({
+	name: "post",
+	initialState: {loadingState: "initial", posts: [] as any[]},
+	reducers: {},
+	extraReducers: builder => {
+		builder.addCase(getAllPosts.pending, (state, action) => {
+			state.loadingState = "loading";
+		}); // async işlem o an işlemde
+		builder.addCase(getAllPosts.fulfilled, (state, action) => {
+			state.loadingState = "loaded";
+			state.posts = action.payload;
+		}); // async işlem bitti ve başarılı cevap geldi: resolve();
+		builder.addCase(getAllPosts.rejected, (state, action) => {
+			state.loadingState = "error";
+			console.log("hata alındı", action);
+		}); // async işlem bitti ve başarısız bir cevap geldi: reject();
+	},//asenkron işlemler üç durumda bulunabiliyor.pending,fulfilled,rejected
+});
+
+export const postReducer = postSlice.reducer;//reducerlar asenkron çalışamıyor. reducerlar yerine asenkron oluşabilen thunk fonksiyonlarını oluşturuz.
+
+
+
+    
+    
+ 
