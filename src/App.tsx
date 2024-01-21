@@ -1,18 +1,19 @@
-
-import './App.css';
-import { useEffect, useState } from 'react';
-import PostService from './services/postService';
-import { Routes, Route } from 'react-router-dom';
-import Homepage from './pages/Homepage/Homepage';
-import NotFound from './pages/NotFound/NotFound';
-import Navbar from './components/Navbar/Navbar';
-import Posts from './pages/Posts/Posts';
-import Login from './pages/Login/Login';
-import { Post } from './models/post';
-
+import Posts from "./pages/Posts/Posts";
+import NotFound from "./pages/NotFound/NotFound";
+import Navbar from "./components/Navbar/Navbar";
+import Login from "./pages/Login/Login";
+import { Post } from "./models/post";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { useEffect, useState } from "react";
+import postService from "./services/postService";
+import { Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage/Homepage";
 
 function App() {
-  const [posts, setPosts] = useState<Post[]>([]); 
+  // Backend bağlantısı - http isteği
+  // bağlantı sonucu gelen değeri ekranda göstermek
+  // componentler arası veri iletişimi
+  const [posts, setPosts] = useState<Post[]>([]);
   // useState hook'u ile 'posts' adında bir state ve bu state'i güncellemek için 'setPosts' adında bir fonksiyon tanımlanır.
 
   useEffect(() => { //useEffect hook'u, bileşenin yüklendiği anda bir işlem gerçekleştirmek için kullanılır.
@@ -28,14 +29,14 @@ function App() {
     try {
 
 
-      let response = await PostService.getAll(); //PostService.getAll fonksiyonu çağrılarak veriler çekilir.
+      let response = await postService.getAll(); //PostService.getAll fonksiyonu çağrılarak veriler çekilir.
       setPosts(response.data); //Başarılı bir şekilde çekilen veriler, setPosts fonksiyonu aracılığıyla 'posts' state'ine eklenir.
     } catch (e) {
       console.log(e); //Hata durumunda ise hata konsola yazdırılır.
     }
-  }
-  const removePost = (id : any) => { //removePost fonksiyonu, bir post'un ID'sine göre filtreleme yaparak 'posts' state'ini günceller ve ilgili post'u kaldırır.
-    setPosts(posts.filter((i:any) => i.id !== id));
+  };
+  const removePost = (id: any) => { //removePost fonksiyonu, bir post'un ID'sine göre filtreleme yaparak 'posts' state'ini günceller ve ilgili post'u kaldırır.
+    setPosts(posts.filter((i: any) => i.id !== id));
   }
   return (
     <>
@@ -44,7 +45,7 @@ function App() {
         <Route path="/" element={<Homepage />} /> {/*sayfa ilk açıldığında*/}
         <Route path="/posts" element={<Posts />} />
         <Route path="*" element={<NotFound />} /> {/*NotFound sayfası*/}
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
     </>

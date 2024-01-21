@@ -1,10 +1,15 @@
-import axios, { AxiosResponse } from "axios";
-import { Post } from "../models/post";
+import {AxiosResponse} from "axios";
+import {Post} from "../models/post";
+import axiosInstance from "../utils/axiosInterceptors";
 
 class PostService {
-getAll(): Promise<AxiosResponse<Post[],any>>{
-   return axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts");
-}
+	getAll(): Promise<AxiosResponse<Post[], any>> {
+		return axiosInstance.get<Post[]>("posts");
+	}
+
+	getById(id: number): Promise<AxiosResponse<Post, any>> {
+		return axiosInstance.get<Post>("posts/" + id);
+	}
 }
 
-export default new PostService; // export ederken new yazarsak app.js de sürekli newlememize gerek kalmaz.
+export default new PostService();// export ederken new yazarsak app.js de sürekli newlememize gerek kalmaz.
